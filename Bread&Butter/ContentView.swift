@@ -1,24 +1,34 @@
-//
-//  ContentView.swift
-//  Bread&Butter
-//
-//  Created by Hari's Mac on 12.04.2025.
-//
-
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) var context
+    @Query var users:[UserModel]
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List{
+            Text("User count : \(users.count)")
+            ForEach(users){ user in
+                Text(user.name)
+            }
         }
-        .padding()
-    }
+     }
+//    func printfriends(for user: User) -> some View {
+//        VStack(alignment: .leading) {
+//            Text("Friends:")
+//                .font(.headline)
+//            
+//            ForEach(user.friends) { friend in
+//                Text("- \(friend.name)")
+//            }
+//        }
+//    }
+    
+//    // Fetch and decode the user data
+    
 }
 
 #Preview {
     ContentView()
 }
+
